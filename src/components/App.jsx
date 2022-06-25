@@ -13,6 +13,7 @@ function App() {
     setItems((prevItems) => {
       return [...prevItems, newItem];
     });
+    setNewItem("");
   }
 
   return (
@@ -33,8 +34,8 @@ function App() {
       </div>
       <div>
         <ul>
-          {items.map((item) => {
-            return <li key="{item}">{item}</li>;
+          {items.map((item, i) => {
+            return <li key={i}>{item}</li>;
           })}
         </ul>
       </div>
