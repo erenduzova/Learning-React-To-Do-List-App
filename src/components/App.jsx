@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 
 function App() {
-  const [newItem, setNewItem] = useState();
+  const [newItem, setNewItem] = useState("");
+  const [items, setItems] = useState([]);
 
   function handleNewItemChange(event) {
-    const value = event.target.value;
-    setNewItem(value);
+    const newValue = event.target.value;
+    setNewItem(newValue);
+  }
+
+  function handleAddButtonClick(event) {
+    setItems((prevItems) => {
+      return [...prevItems, newItem];
+    });
   }
 
   return (
@@ -20,13 +27,15 @@ function App() {
           value={newItem}
           onChange={handleNewItemChange}
         />
-        <button>
+        <button onClick={handleAddButtonClick}>
           <span>Add</span>
         </button>
       </div>
       <div>
         <ul>
-          <li>A Item</li>
+          {items.map((item) => {
+            return <li key="{item}">{item}</li>;
+          })}
         </ul>
       </div>
     </div>
