@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import ListItem from "./ListItem.jsx";
+
 function App() {
   const [newItem, setNewItem] = useState("");
   const [items, setItems] = useState([]);
@@ -35,7 +37,7 @@ function App() {
       <div>
         <ul>
           {items.map((item, i) => {
-            return <li key={i}>{item}</li>;
+            return <ListItem key={i} item={item} />;
           })}
         </ul>
       </div>
