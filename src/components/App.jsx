@@ -1,21 +1,15 @@
 import React, { useState } from "react";
 
 import ListItem from "./ListItem.jsx";
+import NewItemArea from "./NewItemArea";
 
 function App() {
-  const [newItem, setNewItem] = useState("");
   const [items, setItems] = useState([]);
 
-  function handleNewItemChange(event) {
-    const newValue = event.target.value;
-    setNewItem(newValue);
-  }
-
-  function handleAddButtonClick(event) {
+  function handleAddButtonClick(newItem) {
     setItems((prevItems) => {
       return [...prevItems, newItem];
     });
-    setNewItem("");
   }
 
   function deleteItem(id) {
@@ -31,17 +25,7 @@ function App() {
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
-      <div className="form">
-        <input
-          type="text"
-          placeholder="New Item"
-          value={newItem}
-          onChange={handleNewItemChange}
-        />
-        <button onClick={handleAddButtonClick}>
-          <span>Add</span>
-        </button>
-      </div>
+      <NewItemArea addButtonC={handleAddButtonClick} />
       <div>
         <ul>
           {items.map((item, index) => {
